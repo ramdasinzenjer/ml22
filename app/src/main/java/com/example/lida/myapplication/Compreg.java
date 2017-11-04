@@ -38,8 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.lida.myapplication.Constants.EMAIL;
-
 
 public class Compreg extends AppCompatActivity {
     EditText etc, etcomp;
@@ -315,7 +313,7 @@ public class Compreg extends AppCompatActivity {
             } else {
                 try {
                     FileInputStream fileInputStream = new FileInputStream(selectedFile);
-                    URL url = new URL("http://192.168.1.21/mla/uploadfile.php");
+                    URL url = new URL("http://192.168.1.9/mla/uploadfile.php");
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setDoInput(true);//Allow Inputs
                     connection.setDoOutput(true);//Allow Outputs
@@ -325,7 +323,7 @@ public class Compreg extends AppCompatActivity {
                     connection.setRequestProperty("ENCTYPE", "multipart/form-data");
                     connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                     connection.setRequestProperty("uploaded_file", selectedFilePath);
-                    connection.setRequestProperty("email", EMAIL);
+                    connection.setRequestProperty("name",name1 );
 
                     //creating new dataoutputstream
                     dataOutputStream = new DataOutputStream(connection.getOutputStream());
@@ -390,11 +388,23 @@ public class Compreg extends AppCompatActivity {
                     });
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
-                    Toast.makeText(Compreg.this, "URL error!", Toast.LENGTH_SHORT).show();
+                   runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(Compreg.this, "URL error!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
 
                 } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(Compreg.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
+                    final String f = e.toString();
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(Compreg.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Compreg.this, f, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
                 return String.valueOf(serverResponseCode);
             }

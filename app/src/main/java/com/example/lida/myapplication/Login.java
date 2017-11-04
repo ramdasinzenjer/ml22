@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
             }
             sh = Connectivity.excutePost(Constants.LOGIN_URL,
                     urlParameters);
-Log.e("ggg",sh);
+
             return sh;
 
         }
