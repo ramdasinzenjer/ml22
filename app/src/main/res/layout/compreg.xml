@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:textAlignment="center"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Complaint Title"
+        android:ems="10"
+        android:background="#f9f7f7"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:id="@+id/etc" />
+
+    <ScrollView
+        android:id="@+id/idscroll"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/etc"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"
+        android:background="#f9f7f7">
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:hint="Complaint description"
+        android:id="@+id/etcomp"
+        />
+    </ScrollView>
+    <Button
+        android:layout_below="@id/idscroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="select proof"
+        android:id="@+id/btupload"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select MLA's:"
+        android:layout_below="@+id/btupload"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/tvselect"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btupload"
+        android:layout_toRightOf="@+id/tvselect"
+        android:layout_marginTop="25dp"
+        android:id="@+id/spinner">
+
+    </Spinner>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Submit"
+        android:id="@+id/bts"/>
+
+    <Button
+        android:visibility="invisible"
+        android:text="Upload file"
+        android:id="@+id/uploadfilee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btupload"
+        android:layout_alignBottom="@+id/btupload"
+        android:layout_toEndOf="@+id/tvselect" />
+
+</RelativeLayout>

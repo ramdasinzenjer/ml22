@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".25"
+        android:background="@drawable/question">
+
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight=".75">
+
+    <Button
+        android:layout_marginLeft="10dp"
+        android:text="Log a complaint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btl"
+        android:background="@drawable/roundbutton"
+        android:layout_gravity="clip_horizontal"
+        android:layout_weight="0.4"
+        android:layout_marginRight="10dp"/>
+
+    <Button
+        android:layout_marginRight="10dp"
+        android:text="know my status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bts"
+        android:layout_weight=".4"
+        android:background="@drawable/roundbutton"
+        android:layout_marginLeft="10dp"/>
+
+
+</LinearLayout>
+</LinearLayout>
