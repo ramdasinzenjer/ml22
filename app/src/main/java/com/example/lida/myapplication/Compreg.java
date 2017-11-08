@@ -15,10 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -323,7 +325,7 @@ public class Compreg extends AppCompatActivity {
                     connection.setRequestProperty("ENCTYPE", "multipart/form-data");
                     connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                     connection.setRequestProperty("uploaded_file", selectedFilePath);
-                    connection.setRequestProperty("name",name1 );
+                    connection.setRequestProperty("name", name1);
 
                     //creating new dataoutputstream
                     dataOutputStream = new DataOutputStream(connection.getOutputStream());
@@ -388,7 +390,7 @@ public class Compreg extends AppCompatActivity {
                     });
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
-                   runOnUiThread(new Runnable() {
+                    runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(Compreg.this, "URL error!", Toast.LENGTH_SHORT).show();
                         }
@@ -412,4 +414,13 @@ public class Compreg extends AppCompatActivity {
         }
 
     }
+class mnp extends  AsyncTask<String, String,String>
+{
+
+    @Override
+    protected String doInBackground(String... strings) {
+
+    }
+}
+
 }
