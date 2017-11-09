@@ -25,7 +25,8 @@
         <activity android:name=".Registred" />
         <activity android:name=".category_selection" />
         <activity android:name=".mla_list" />
-        <activity android:name=".Feedback"></activity>
+        <activity android:name=".Feedback" />
+        <activity android:name=".minis_list"></activity>
     </application>
 
 </manifest>
