@@ -11,11 +11,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +34,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class Compreg extends AppCompatActivity {
@@ -68,11 +65,13 @@ public class Compreg extends AppCompatActivity {
         btupload = (Button) findViewById(R.id.btupload);
         final Button fileupload = (Button) findViewById(R.id.uploadfilee);
         bts = (Button) findViewById(R.id.bts);
-SharedPreferences share = getSharedPreferences("mlaid" ,MODE_PRIVATE )  ;
-        name1 = share.getString("name" , "  ");
-        idk = share.getString("id","");
+        SharedPreferences share = getSharedPreferences("mlaid", MODE_PRIVATE);
+        name1 = share.getString("name", "  ");
+        idk = share.getString("id", "");
         Toast.makeText(this, name1, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, idk, Toast.LENGTH_SHORT).show();
+        SharedPreferences dd = getSharedPreferences("abc", MODE_PRIVATE);
+        name1 = dd.getString("name", null);
 
 
         btupload.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +105,6 @@ SharedPreferences share = getSharedPreferences("mlaid" ,MODE_PRIVATE )  ;
 
 
     }
-
 
 
     public class NewTask extends AsyncTask<String, String, String> {

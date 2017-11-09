@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lida.myapplication.Feedback">
+<TextView
+    android:textSize="20dp"
+    android:typeface="monospace"
+    android:layout_marginTop="30dp"
+    android:layout_centerHorizontal="true"
+    android:text="FEEDBACK/SUGGETION"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView" />
+
+    <EditText
+        android:gravity="start"
+        android:text="enter feedback"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/feedback_et" />
+
+    <Button
+        android:id="@+id/feedback_bt"
+        android:text="Submit"
+        android:background="@drawable/roundbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feedback_et"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+</RelativeLayout>

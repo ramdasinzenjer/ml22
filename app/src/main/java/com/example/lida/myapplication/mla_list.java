@@ -50,13 +50,24 @@ public class mla_list extends AppCompatActivity {
             public void onClick(View view, int position) {
                 mla ml = mla_list.get(position);
                 Toast.makeText(getApplicationContext(), ml.getName() + " is selected!", Toast.LENGTH_SHORT).show();
-                SharedPreferences sh = getSharedPreferences("mlaid",MODE_PRIVATE);
+                SharedPreferences sh = getSharedPreferences("mlaid", MODE_PRIVATE);
                 SharedPreferences.Editor edsh = sh.edit();
-                edsh.putString("id",ml.getId());
-                edsh.putString("name",ml.getName());
+                edsh.putString("id", ml.getId());
+                edsh.putString("name", ml.getName());
                 edsh.commit();
-                Intent i = new Intent(mla_list.this , Compreg.class);
-                startActivity(i);
+
+                SharedPreferences md = getSharedPreferences("abc", MODE_PRIVATE);
+                String s = md.getString("type", null);
+                if (s.equalsIgnoreCase("complaint")) {
+                    Intent i = new Intent(mla_list.this, Compreg.class);
+                    startActivity(i);
+                }
+                if (s.equalsIgnoreCase("feedback")) {
+                    Intent i = new Intent(mla_list.this, Feedback.class);
+                    startActivity(i);
+                }
+
+
             }
 
             @Override

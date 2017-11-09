@@ -21,10 +21,11 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Comp" />
-        <activity android:name=".Compreg"/>
-        <activity android:name=".Registred"/>
+        <activity android:name=".Compreg" />
+        <activity android:name=".Registred" />
         <activity android:name=".category_selection" />
-        <activity android:name=".mla_list"></activity>
+        <activity android:name=".mla_list" />
+        <activity android:name=".Feedback"></activity>
     </application>
 
 </manifest>
