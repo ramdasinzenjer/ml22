@@ -27,8 +27,8 @@ public class minis_adapter extends RecyclerView.Adapter<minis_adapter.MyViewHold
 
         public MyViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.ml_name);
-            department = (TextView) view.findViewById(R.id.ml_id);
+            name = (TextView) view.findViewById(R.id.mins_name);
+            department = (TextView) view.findViewById(R.id.mins_dep);
             // constituency = (TextView) view.findViewById(R.id.constituency);
         }
     }
@@ -41,7 +41,7 @@ public class minis_adapter extends RecyclerView.Adapter<minis_adapter.MyViewHold
     @Override
     public minis_adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.mla_inflator, parent, false);
+                .inflate(R.layout.mins_inflator, parent, false);
 
         return new minis_adapter.MyViewHolder(itemView);
     }
@@ -50,7 +50,12 @@ public class minis_adapter extends RecyclerView.Adapter<minis_adapter.MyViewHold
     public void onBindViewHolder(minis_adapter.MyViewHolder holder, int position) {
         mins ml = minis_list.get(position);
         holder.name.setText(ml.getName());
-        holder.department.setText(ml.getId());
+        try {
+            holder.department.setText(ml.getDepartment());
+        }
+       catch (Exception e){
+
+       }
         //holder.ml_constituency.setText(ml.getConstituency());
     }
 
