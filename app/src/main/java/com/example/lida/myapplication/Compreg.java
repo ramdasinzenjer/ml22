@@ -15,12 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,10 +68,12 @@ public class Compreg extends AppCompatActivity {
         btupload = (Button) findViewById(R.id.btupload);
         final Button fileupload = (Button) findViewById(R.id.uploadfilee);
         bts = (Button) findViewById(R.id.bts);
-        tvselect = (TextView) findViewById(R.id.tvselect);
-        mspinner = (Spinner) findViewById(R.id.spinner);
-        SharedPreferences share = getSharedPreferences("abc", MODE_APPEND);
-        name1 = share.getString("name", "");
+SharedPreferences share = getSharedPreferences("mlaid" ,MODE_PRIVATE )  ;
+        name1 = share.getString("name" , "  ");
+        idk = share.getString("id","");
+        Toast.makeText(this, name1, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, idk, Toast.LENGTH_SHORT).show();
+
 
         btupload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,93 +103,11 @@ public class Compreg extends AppCompatActivity {
                 Toast.makeText(Compreg.this, "upload", Toast.LENGTH_SHORT).show();
             }
         });
-        new NewClass().execute();
 
 
     }
 
-    public class NewClass extends AsyncTask<String, String, String> {
-        String urlParameters = "";
 
-        @Override
-        protected String doInBackground(String... strings) {
-
-
-            sh = Connectivity.excutePost(Constants.MLA_URL,
-                    "");
-            Log.e("You are at", "" + sh);
-
-            return sh;
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            //   if (sh.contains("SUCCESS")) {
-            //   Toast.makeText(getApplicationContext(), sh, Toast.LENGTH_SHORT).show();
-            parsingmethod(sh);
-
-            //   }
-        }
-
-
-    }
-
-    public void parsingmethod(String resp) {
-        try {
-            JSONObject object0 = new JSONObject(resp);
-            JSONObject jobject1 = object0.getJSONObject("Event");
-            JSONArray ja = jobject1.getJSONArray("Details");
-            int length = ja.length();
-            List<String> label = new ArrayList<String>();
-
-            for (int i = 0; i < length; i++) {
-                JSONObject data1 = ja.getJSONObject(i);
-                final String[] id = {data1.getString("id")};
-                String name = data1.getString("name");
-                String mlaid = data1.getString("mlaid");
-
-                HashMap<String, String> map = new HashMap<>();
-                map.put("id", id[0]);
-                map.put("name", name);
-                map.put("mlaid", mlaid);
-
-                list.add(map);
-                label.add(list.get(i).get("name"));
-
-                //   Toast.makeText(getApplicationContext(),"-------"+label,Toast.LENGTH_SHORT).show();
-
-                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, label);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                mspinner.setAdapter(adapter);
-
-                mspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        s = adapterView.getItemAtPosition(i).toString();
-                        Toast.makeText(getApplicationContext(), "-------" + s, Toast.LENGTH_SHORT).show();
-                        idk = list.get(i).get("mlaid").toString();
-                        Toast.makeText(Compreg.this, idk, Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-
-                Log.e("mException", "qqqqq" + label.get(i).toString());
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("mException", "qqqqqq" + e);
-        }
-    }
 
     public class NewTask extends AsyncTask<String, String, String> {
         @Override
@@ -315,7 +233,7 @@ public class Compreg extends AppCompatActivity {
             } else {
                 try {
                     FileInputStream fileInputStream = new FileInputStream(selectedFile);
-                    URL url = new URL("http://192.168.1.9/mla/uploadfile.php");
+                    URL url = new URL("http://192.168.1.21/mla/uploadfile.php");
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setDoInput(true);//Allow Inputs
                     connection.setDoOutput(true);//Allow Outputs
@@ -325,7 +243,6 @@ public class Compreg extends AppCompatActivity {
                     connection.setRequestProperty("ENCTYPE", "multipart/form-data");
                     connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                     connection.setRequestProperty("uploaded_file", selectedFilePath);
-                    connection.setRequestProperty("name", name1);
 
                     //creating new dataoutputstream
                     dataOutputStream = new DataOutputStream(connection.getOutputStream());
@@ -390,23 +307,11 @@ public class Compreg extends AppCompatActivity {
                     });
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(Compreg.this, "URL error!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    Toast.makeText(Compreg.this, "URL error!", Toast.LENGTH_SHORT).show();
 
                 } catch (IOException e) {
-                    final String f = e.toString();
-
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(Compreg.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(Compreg.this, f, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    e.printStackTrace();
+                    Toast.makeText(Compreg.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
                 }
                 return String.valueOf(serverResponseCode);
             }
@@ -414,13 +319,4 @@ public class Compreg extends AppCompatActivity {
         }
 
     }
-class mnp extends  AsyncTask<String, String,String>
-{
-
-    @Override
-    protected String doInBackground(String... strings) {
-
-    }
-}
-
 }

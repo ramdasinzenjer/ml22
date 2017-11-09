@@ -22,7 +22,7 @@ public class Comp extends AppCompatActivity {
         btl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent s=new Intent(Comp.this,Compreg.class);
+                Intent s=new Intent(Comp.this,category_selection.class);
                 startActivity(s);
             }
         });

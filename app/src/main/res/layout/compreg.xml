@@ -40,40 +40,22 @@
         android:text="select proof"
         android:id="@+id/btupload"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select MLA's:"
-        android:layout_below="@+id/btupload"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="25dp"
-        android:id="@+id/tvselect"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btupload"
-        android:layout_toRightOf="@+id/tvselect"
-        android:layout_marginTop="25dp"
-        android:id="@+id/spinner">
-
-    </Spinner>
     <Button
+        android:id="@+id/bts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/btupload"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Submit"
-        android:id="@+id/bts"/>
+        android:layout_marginTop="27dp"
+        android:text="Submit" />
 
     <Button
-        android:visibility="invisible"
-        android:text="Upload file"
         android:id="@+id/uploadfilee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btupload"
-        android:layout_alignBottom="@+id/btupload"
-        android:layout_toEndOf="@+id/tvselect" />
+        android:layout_below="@+id/idscroll"
+        android:layout_toStartOf="@+id/btupload"
+        android:text="Upload file"
+        android:visibility="invisible" />
 
 </RelativeLayout>
