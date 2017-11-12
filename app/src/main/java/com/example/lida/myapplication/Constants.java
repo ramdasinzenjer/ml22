@@ -15,6 +15,7 @@ public interface Constants {
     String REGISTRATION_URL=BASE_URL+"registration.php?";
     String  MLA_URL=BASE_URL+"mlalist.php?";
     String COMPLAINT_REG_URL=BASE_URL+"complaint_reg.php?";
+    String COMPLAINT_REG_URL2=BASE_URL+"complaint_reg2.php?";
 
     //Details
 

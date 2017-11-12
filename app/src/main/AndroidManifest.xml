@@ -26,7 +26,11 @@
         <activity android:name=".category_selection" />
         <activity android:name=".mla_list" />
         <activity android:name=".Feedback" />
-        <activity android:name=".minis_list"></activity>
+        <activity android:name=".minis_list" />
+        <activity
+            android:name=".mps"
+            android:label="@string/title_activity_mps"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -32,29 +32,32 @@
         android:id="@+id/etcomp"
         />
     </ScrollView>
+
     <Button
-        android:layout_below="@id/idscroll"
+        android:id="@+id/btupload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/idscroll"
         android:layout_centerHorizontal="true"
-        android:text="select proof"
-        android:id="@+id/btupload"/>
+        android:layout_marginTop="17dp"
+        android:text="select proof" />
 
     <Button
         android:id="@+id/bts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btupload"
+        android:layout_below="@+id/uploadfilee"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="40dp"
         android:text="Submit" />
 
     <Button
         android:id="@+id/uploadfilee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idscroll"
-        android:layout_toStartOf="@+id/btupload"
+        android:layout_below="@+id/btupload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
         android:text="Upload file"
         android:visibility="invisible" />
 

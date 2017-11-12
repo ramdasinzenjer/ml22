@@ -19,12 +19,14 @@
             android:layout_width="150dp"
             android:text="MLA's" />
         <Button
+            android:onClick="mps"
             android:layout_margin="10dp"
             android:background="@drawable/roundbutton"
             android:layout_height="150dp"
             android:layout_width="150dp"
             android:text="MP's" />
         <Button
+            android:onClick="ministers"
             android:layout_margin="10dp"
             android:background="@drawable/roundbutton"
             android:layout_height="150dp"

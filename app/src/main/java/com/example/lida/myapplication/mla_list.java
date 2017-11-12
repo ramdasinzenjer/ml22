@@ -33,10 +33,19 @@ public class mla_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mla_list);
+
+        SharedPreferences md = getSharedPreferences("abc", MODE_PRIVATE);
+        String s = md.getString("type", null);
+        if (s.equalsIgnoreCase("complaint")) {
+            getSupportActionBar().setTitle("Complaint Registration");
+        }
+        if (s.equalsIgnoreCase("feedback")) {
+            getSupportActionBar().setTitle("Feedback Or suggetion");
+        }
+
         mla_View = (RecyclerView) findViewById(R.id.mla_recyclervview);
 
         mAdapter = new mla_adapter(mla_list);
-
         mla_View.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mla_View.setLayoutManager(mLayoutManager);

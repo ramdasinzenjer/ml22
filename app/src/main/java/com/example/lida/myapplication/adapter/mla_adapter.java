@@ -17,20 +17,18 @@ import java.util.List;
 
 public class mla_adapter extends RecyclerView.Adapter<mla_adapter.MyViewHolder> {
 
-private List<mla> mla_list;
+    private List<mla> mla_list;
 
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView name, id, constituency;
 
-
-public class MyViewHolder extends RecyclerView.ViewHolder {
-    public TextView name, id, constituency;
-
-    public MyViewHolder(View view) {
-        super(view);
-        name = (TextView) view.findViewById(R.id.ml_name);
-        id = (TextView) view.findViewById(R.id.ml_id);
-       // constituency = (TextView) view.findViewById(R.id.constituency);
+        public MyViewHolder(View view) {
+            super(view);
+            name = (TextView) view.findViewById(R.id.ml_name);
+            id = (TextView) view.findViewById(R.id.ml_id);
+            // constituency = (TextView) view.findViewById(R.id.constituency);
+        }
     }
-}
 
 
     public mla_adapter(List<mla> mla_list) {

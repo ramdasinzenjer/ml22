@@ -42,6 +42,9 @@ public class Comp extends AppCompatActivity {
                 startActivity(s);
             }
         });
+
     }
+
+
 
 }

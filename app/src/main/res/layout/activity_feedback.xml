@@ -17,7 +17,7 @@
 
     <EditText
         android:gravity="start"
-        android:text="enter feedback"
+        android:hint="enter feedback"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_below="@+id/textView"
