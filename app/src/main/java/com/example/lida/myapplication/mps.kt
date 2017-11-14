@@ -113,11 +113,9 @@ class mps : AppCompatActivity() {
             val jobject1 = object0.getJSONObject("Event")
             val ja = jobject1.getJSONArray("Details")
             val length = ja.length()
-            val label = ArrayList<String>()
 
             for (i in 0 until length) {
                 val data1 = ja.getJSONObject(i)
-                val id = arrayOf(data1.getString("id"))
                 val name = data1.getString("name")
                 val mlaid = data1.getString("mlaid")
 

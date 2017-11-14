@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,11 +16,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.xtras.classFileWrite;
+import com.example.lida.myapplication.xtras.timeStampName;
+
 import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +44,7 @@ import static com.example.lida.myapplication.Filepath.getPath;
 public class Compreg extends AppCompatActivity {
     EditText etc, etcomp;
     Button btupload, bts;
-    TextView tvselect;
+    TextView tvselect, mText;
     String title, des;
     String sh;
     Spinner mspinner;
@@ -45,11 +53,13 @@ public class Compreg extends AppCompatActivity {
     String idk;
     String response;
     String name1;
+    Button fileupload;
     private static final int PICK_FILE_REQUEST = 1;
     private static final String TAG = MainActivity.class.getSimpleName();
     private String selectedFilePath;
     ProgressDialog dialog;
     String filename;
+    ImageButton btcam;
     int isproof = 0;
 
 
@@ -59,10 +69,12 @@ public class Compreg extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compreg);
+
+        mText = (TextView) findViewById(R.id.messageText);
         etc = (EditText) findViewById(R.id.etc);
         etcomp = (EditText) findViewById(R.id.etcomp);
         btupload = (Button) findViewById(R.id.btupload);
-        final Button fileupload = (Button) findViewById(R.id.uploadfilee);
+        fileupload = (Button) findViewById(R.id.uploadfilee);
         bts = (Button) findViewById(R.id.bts);
         SharedPreferences share = getSharedPreferences("mlaid", MODE_PRIVATE);
         /*name1 = share.getString("name", "  ");*/
@@ -72,7 +84,7 @@ public class Compreg extends AppCompatActivity {
         SharedPreferences dd = getSharedPreferences("abc", MODE_PRIVATE);
         name1 = dd.getString("name", null);
         Toast.makeText(this, name1, Toast.LENGTH_SHORT).show();
-
+        btcam = (ImageButton) findViewById(R.id.bt_cam);
 
         btupload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,21 +98,45 @@ public class Compreg extends AppCompatActivity {
         bts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int isempty_test = 0;
 
                 title = etc.getText().toString();
                 des = etcomp.getText().toString();
 
-                if (isproof == 0) {
-                    new NewTask().execute();
+                if (title.isEmpty()) {
+                    isempty_test = 1;
+                    Toast.makeText(Compreg.this, "Title is emplty", Toast.LENGTH_SHORT).show();
+
                 }
-                if (isproof == 1) {
-                    new NewTask2().execute();
+                if (des.isEmpty()) {
+                    isempty_test = 1;
+                    Toast.makeText(Compreg.this, "Discription is emplty", Toast.LENGTH_SHORT).show();
+
+                }
+                if (isempty_test == 0) {
+                    if (isproof == 0) {
+                        new NewTask().execute();
+                    }
+                    if (isproof == 1) {
+                        new NewTask2().execute();
+                    }
+
                 }
 
 
             }
         });
+        btcam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btupload.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 123);
+
+
+            }
+        });
+
         fileupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +147,6 @@ public class Compreg extends AppCompatActivity {
 
 
     }
-
 
     public class NewTask extends AsyncTask<String, String, String> {
         @Override
@@ -249,15 +284,29 @@ public class Compreg extends AppCompatActivity {
                     Toast.makeText(this, "Cannot upload file to server", Toast.LENGTH_SHORT).show();
                 }
             }
+            if (requestCode == 123) {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+                ImageView img = (ImageView) findViewById(R.id.testimgview);
+                selectedFilePath = classFileWrite.createDirectoryAndSaveFile(photo, timeStampName.time());
+                fileupload.setVisibility(View.VISIBLE);
+                btcam.setVisibility(View.INVISIBLE);
+
+
+            }
         }
+
     }
 
 
-    class upp extends AsyncTask<String, String, Void> {
+    class upp extends AsyncTask<String, String, Void> implements SingleUploadBroadcastReceiver.Delegate {
 
         @Override
         protected Void doInBackground(String... strings) {
+            final String TAG = "AndroidUploadService";
 
+            final SingleUploadBroadcastReceiver uploadReceiver =
+                    new SingleUploadBroadcastReceiver();
 
             //getting name for the image
             //String name = Todo;
@@ -266,10 +315,13 @@ public class Compreg extends AppCompatActivity {
             //path
 
             //Uploading code
+
             try {
                 isproof = 1;
                 String uploadId = UUID.randomUUID().toString();
-                filename = selectedFilePath.substring((selectedFilePath.lastIndexOf("/")+1));
+                uploadReceiver.setDelegate(this);
+                uploadReceiver.setUploadID(uploadId);
+                filename = selectedFilePath.substring((selectedFilePath.lastIndexOf("/") + 1));
                 runOnUiThread(new Runnable() {
                     public void run() {
                         Toast.makeText(Compreg.this, filename, Toast.LENGTH_SHORT).show();
@@ -278,6 +330,7 @@ public class Compreg extends AppCompatActivity {
                 //Creating a multi part request
                 new MultipartUploadRequest(Compreg.this, uploadId, "http://192.168.1.9/mla/uploadfile.php")
                         .addFileToUpload(selectedFilePath, "uploaded_file") //Adding file
+                        .setNotificationConfig(new UploadNotificationConfig())
                         .addParameter("name", name1) //Adding text parameter to the request
                         .addParameter("id", idk) //Adding text parameter to the request
                         .setMaxRetries(2)
@@ -291,9 +344,40 @@ public class Compreg extends AppCompatActivity {
                     }
                 });
 
+
             }
 
             return null;
+        }
+
+
+        @Override
+        public void onProgress(int progress) {
+
+        }
+
+        @Override
+        public void onProgress(long uploadedBytes, long totalBytes) {
+
+        }
+
+        @Override
+        public void onError(Exception exception) {
+
+        }
+
+        @Override
+        public void onCompleted(int serverResponseCode, byte[] serverResponseBody) {
+
+            final String mn = serverResponseBody.toString();
+            Log.e("sdcbvjjjjjjjsdkhjvbc", mn);
+
+
+        }
+
+        @Override
+        public void onCancelled() {
+
         }
     }
 

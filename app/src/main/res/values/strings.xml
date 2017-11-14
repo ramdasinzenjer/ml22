@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="title_activity_mps">mps</string>
+    <string name="complaint_description">Complaint description</string>
+    <string name="upload_file">Upload file</string>
 </resources>
