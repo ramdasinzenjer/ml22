@@ -27,6 +27,7 @@ import java.util.Map;
 
 public class Feedback extends AppCompatActivity {
     String status = "stata";
+    String feedback = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class Feedback extends AppCompatActivity {
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String des = edt.getText().toString().trim();
+                final String des = edt.getText().toString().trim();
                 RequestQueue queue = Volley.newRequestQueue(Feedback.this);
                 String response = "";
                 final String finalResponse = response;
@@ -58,9 +59,9 @@ public class Feedback extends AppCompatActivity {
                                     JSONArray result = jsonObject.getJSONArray("c");
                                     JSONObject employee = result.getJSONObject(1);
                                     status = employee.getString("status");
-                                    Toast.makeText(Feedback.this, status, Toast.LENGTH_SHORT).show();
                                     if (status.contains("success")) {
-                                        Toast.makeText(Feedback.this, "done", Toast.LENGTH_SHORT).show();
+                                       Intent i = new Intent(Feedback.this,feedbacksucc.class);
+                                       startActivity(i);
 
 
                                     }
@@ -83,7 +84,6 @@ public class Feedback extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // error
-                                Log.e("ErrorResponse", finalResponse);
                                 Toast.makeText(Feedback.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
 
 
@@ -100,7 +100,7 @@ public class Feedback extends AppCompatActivity {
                         params.put("name", name);
                         params.put("title", id);
                         params.put("id", id);
-                        params.put("des", id);
+                        params.put("des", des);
 
                         return params;
                     }

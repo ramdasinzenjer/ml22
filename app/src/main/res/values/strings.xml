@@ -3,4 +3,6 @@
     <string name="title_activity_mps">mps</string>
     <string name="complaint_description">Complaint description</string>
     <string name="upload_file">Upload file</string>
+    <string name="title_activity_know_your_status">KnowYourStatus</string>
+    <string name="details">Details</string>
 </resources>

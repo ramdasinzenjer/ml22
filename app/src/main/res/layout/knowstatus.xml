@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:text="Token No:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="109dp"
-        android:id="@+id/tvtoken" />
-
     <EditText
+
+        android:id="@+id/statusId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="29dp"
-        android:layout_marginTop="96dp"
-        android:id="@+id/ettoken" />
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="Enter Your Complaint ID"
+        android:inputType="textPersonName" />
+
+
+    <ImageButton
+        android:id="@+id/Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/statusId"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/statusId"
+        app:srcCompat="@android:drawable/ic_menu_search" />
 
     <TextView
-        android:text="Status:"
+        android:id="@+id/stvisibility"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:id="@+id/tvstatus"
-        android:layout_below="@+id/ettoken"
-        android:layout_alignStart="@+id/tvtoken" />
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvstatus"
-        android:layout_centerHorizontal="true">
-
+        android:layout_alignBaseline="@id/Statussss"
+        android:layout_margin="15dp"
+        android:text="Status"
+        android:textColor="@color/colorPrimaryDark" />
 
     <TextView
-        android:background="#e6caca"
+        android:id="@+id/Statussss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/statusId"
+        android:layout_below="@+id/statusId"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="54dp" />
+
+    <TextView
+        android:id="@+id/dtvisibility"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:height="150dp"
-        android:width="250dp"
-        android:id="@+id/tvdes"
-        android:layout_below="@+id/tvstatus"
-        android:layout_centerHorizontal="true" />
-    </ScrollView>
-    <Button
+        android:layout_alignBaseline="@id/details"
+        android:layout_margin="15dp"
+        android:text="@string/details"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ok"
-        android:layout_below="@+id/tvdes"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
-        android:id="@+id/btok"/>
+        android:layout_centerVertical="true" />
 </RelativeLayout>

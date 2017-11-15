@@ -11,9 +11,8 @@ import java.io.FileOutputStream;
  */
 
 public class classFileWrite {
-    public   static String createDirectoryAndSaveFile(Bitmap imageToSave, String fileName)
-    {
-        String fname= fileName+".jpg";
+    public static String createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+        String fname = fileName + ".jpg";
 
         File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
 
@@ -28,12 +27,13 @@ public class classFileWrite {
         }
         try {
             FileOutputStream out = new FileOutputStream(file);
-            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG,
+                    100, out);
             out.flush();
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Environment.getExternalStorageDirectory()+"/DirName/"+fname;
+        return Environment.getExternalStorageDirectory() + "/DirName/" + fname;
     }
 }

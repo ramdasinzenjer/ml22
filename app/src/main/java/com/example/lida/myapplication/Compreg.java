@@ -10,14 +10,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +70,8 @@ public class Compreg extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compreg);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mText = (TextView) findViewById(R.id.messageText);
         etc = (EditText) findViewById(R.id.etc);
@@ -129,7 +132,15 @@ public class Compreg extends AppCompatActivity {
         btcam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btupload.setVisibility(View.INVISIBLE);
+                btupload.setVisibility(View.INVISIBLE);/*
+                CameraConfig cameraConfig = new CameraConfig()
+                        .getBuilder(this)
+                        .setCameraFacing(CameraFacing.FRONT_FACING_CAMERA)
+                        .setCameraResolution(CameraResolution.MEDIUM_RESOLUTION)
+                        .setImageFormat(CameraImageFormat.FORMAT_JPEG)
+                        .build();
+
+                startCamera(cameraConfig);*/
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 123);
 
@@ -147,6 +158,7 @@ public class Compreg extends AppCompatActivity {
 
 
     }
+
 
     public class NewTask extends AsyncTask<String, String, String> {
         @Override
@@ -276,6 +288,8 @@ public class Compreg extends AppCompatActivity {
                 Uri selectedFileUri = data.getData();
                 selectedFilePath = getPath(this, selectedFileUri);
                 Log.i(TAG, "Selected File Path:" + selectedFilePath);
+                TextView txt = (TextView) findViewById(R.id.messageText);
+                txt.setText(selectedFilePath);
 
                 if (selectedFilePath != null && !selectedFilePath.equals("")) {
 
@@ -285,9 +299,14 @@ public class Compreg extends AppCompatActivity {
                 }
             }
             if (requestCode == 123) {
+                // CameraConfig mCameraConfig;
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-                ImageView img = (ImageView) findViewById(R.id.testimgview);
+                /* File fos = new FileOutputStream(mCameraConfig.getImageFile());
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                bitmap.compress(mCameraConfig.getImageFormat() == ImageFormat.JPEG
+                                ? Bitmap.CompressFormat.JPEG : Bitmap.CompressFormat.PNG,
+                        100, fos);*/
+                // ImageView img = (ImageView) findViewById(R.id.testimgview);
                 selectedFilePath = classFileWrite.createDirectoryAndSaveFile(photo, timeStampName.time());
                 fileupload.setVisibility(View.VISIBLE);
                 btcam.setVisibility(View.INVISIBLE);
@@ -378,6 +397,16 @@ public class Compreg extends AppCompatActivity {
         @Override
         public void onCancelled() {
 
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
