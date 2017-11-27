@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,13 +12,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.xtras.Constants;
+import com.example.lida.myapplication.R;
 import com.example.lida.myapplication.adapter.RecyclerTouchListener;
 import com.example.lida.myapplication.adapter.minis_adapter;
 import com.example.lida.myapplication.decorators.DividerItemDecoration;
-import com.example.lida.myapplication.models.mla;
 import com.example.lida.myapplication.models.mins;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,6 +37,14 @@ public class minis_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minis_list);
+        SharedPreferences md = getSharedPreferences("abc", MODE_PRIVATE);
+        String s = md.getString("type", null);
+        if (s.equalsIgnoreCase("complaint")) {
+            getSupportActionBar().setTitle("Complaint Registration");
+        }
+        if (s.equalsIgnoreCase("feedback")) {
+            getSupportActionBar().setTitle("Feedback Or suggetion");
+        }
 
         mins_view = (RecyclerView) findViewById(R.id.mins_id);
 
@@ -87,7 +98,7 @@ public class minis_list extends AppCompatActivity {
         protected String doInBackground(String... strings) {
 
 
-            sh = Connectivity.excutePost(Constants.MLA_URL,
+            sh = Connectivity.excutePost(Constants.Minis_list,
                     "");
             Log.e("You are at", "" + sh);
 
@@ -121,16 +132,22 @@ public class minis_list extends AppCompatActivity {
                 JSONObject data1 = ja.getJSONObject(i);
                 final String[] id = {data1.getString("id")};
                 String name = data1.getString("name");
-                String mlaid = data1.getString("mlaid");
+                String mlaid = data1.getString("ministral_id");
+                String Department = data1.getString("Department");
+                String constituency = data1.getString("constituency");
 
-                mins ml = new mins(name, mlaid, "con");
+                mins ml = new mins(name,mlaid,Department,constituency);
 
 
                 minll.add(ml);
 
             }
 
-        } catch (Exception e) {
+        } catch (JSONException e )
+        {
+          Log.e("fv",e.toString());
+        }
+        catch (Exception e) {
             e.printStackTrace();
             Log.e("mException", "qqqqqq" + e);
         }

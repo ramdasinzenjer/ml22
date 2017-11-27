@@ -1,10 +1,9 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.lida.myapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +24,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.lida.myapplication.xtras.Constants.S_URL;
 
 public class Feedback extends AppCompatActivity {
     String status = "stata";
@@ -48,7 +50,7 @@ public class Feedback extends AppCompatActivity {
                 String response = "";
                 final String finalResponse = response;
                 //TODO url
-                String S_URL = "http://192.168.1.9/mla/feedback.php";
+
                 StringRequest postRequest = new StringRequest(Request.Method.POST, S_URL,
                         new Response.Listener<String>() {
                             @Override

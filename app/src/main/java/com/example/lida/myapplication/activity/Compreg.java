@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,6 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.xtras.Constants;
+import com.example.lida.myapplication.R;
+import com.example.lida.myapplication.xtras.SingleUploadBroadcastReceiver;
+import com.example.lida.myapplication.xtras.var;
 import com.example.lida.myapplication.xtras.classFileWrite;
 import com.example.lida.myapplication.xtras.timeStampName;
 
@@ -39,7 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static com.example.lida.myapplication.Filepath.getPath;
+import static com.example.lida.myapplication.xtras.Constants.UploadUrl;
+import static com.example.lida.myapplication.xtras.Filepath.getPath;
 
 
 public class Compreg extends AppCompatActivity {
@@ -347,7 +352,7 @@ public class Compreg extends AppCompatActivity {
                     }
                 });
                 //Creating a multi part request
-                new MultipartUploadRequest(Compreg.this, uploadId, "http://192.168.1.9/mla/uploadfile.php")
+                new MultipartUploadRequest(Compreg.this, uploadId, UploadUrl)
                         .addFileToUpload(selectedFilePath, "uploaded_file") //Adding file
                         .setNotificationConfig(new UploadNotificationConfig())
                         .addParameter("name", name1) //Adding text parameter to the request

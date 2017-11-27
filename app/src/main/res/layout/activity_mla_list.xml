@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lida.myapplication.mla_list">
+    tools:context="com.example.lida.myapplication.activity.mla_list">
 
 <android.support.v7.widget.RecyclerView
     android:layout_centerHorizontal="true"
     android:id="@+id/mla_recyclervview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

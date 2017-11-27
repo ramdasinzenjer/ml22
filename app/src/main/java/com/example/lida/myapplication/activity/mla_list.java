@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.xtras.Constants;
+import com.example.lida.myapplication.R;
 import com.example.lida.myapplication.adapter.RecyclerTouchListener;
 import com.example.lida.myapplication.adapter.mla_adapter;
 import com.example.lida.myapplication.decorators.DividerItemDecoration;
@@ -128,9 +131,10 @@ public class mla_list extends AppCompatActivity {
                 JSONObject data1 = ja.getJSONObject(i);
                 final String[] id = {data1.getString("id")};
                 String name = data1.getString("name");
-                String mlaid = data1.getString("mlaid");
+                String mlaid = data1.getString("ministral_id");
+                String constituency = data1.getString("constituency");
 
-                mla ml = new mla(name, mlaid, "con");
+                mla ml = new mla(name, mlaid, constituency);
 
 
                 mla_list.add(ml);

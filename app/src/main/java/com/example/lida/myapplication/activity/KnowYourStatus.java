@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -11,13 +11,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import static com.example.lida.myapplication.Constants.knowstatus;
+import static com.example.lida.myapplication.xtras.Constants.knowstatus;
 
 public class KnowYourStatus extends AppCompatActivity {
     EditText StatusId;

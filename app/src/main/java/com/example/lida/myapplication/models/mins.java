@@ -5,7 +5,14 @@ package com.example.lida.myapplication.models;
  */
 
 public class mins {
-    String name,id,department;
+    String name,id,department,constituency;
+
+    public mins(String name, String id, String department, String constituency) {
+        this.name = name;
+        this.id = id;
+        this.department = department;
+        this.constituency = constituency;
+    }
 
     public String getName() {
         return name;
@@ -31,10 +38,11 @@ public class mins {
         this.department = department;
     }
 
-    public mins(String name, String id, String department) {
+    public String getConstituency() {
+        return constituency;
+    }
 
-        this.name = name;
-        this.id = id;
-        this.department = department;
+    public void setConstituency(String constituency) {
+        this.constituency = constituency;
     }
 }

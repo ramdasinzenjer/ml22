@@ -1,30 +1,20 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.xtras.Constants;
+import com.example.lida.myapplication.R;
+
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
@@ -124,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
             if (response.contains("success")) {
 
                 Toast.makeText(MainActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-                                                       /*Toast.makeText(getApplicationContext(), ""+response, Toast.LENGTH_SHORT).show();
-                                                       Intent i=new Intent(getApplicationContext(),Homepage.class);
-                                                       startActivity(i);*/
+                /*Toast.makeText(getApplicationContext(), ""+response, Toast.LENGTH_SHORT).show();*/
+                Intent i=new Intent(getApplicationContext(),Comp.class);
+                startActivity(i);
 
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();

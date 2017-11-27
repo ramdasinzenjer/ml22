@@ -15,29 +15,28 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Comp" />
-        <activity android:name=".Compreg" />
-        <activity android:name=".Registred" />
-        <activity android:name=".category_selection" />
-        <activity android:name=".mla_list" />
-        <activity android:name=".Feedback" />
-        <activity android:name=".minis_list" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.Comp" />
+        <activity android:name=".activity.Compreg" />
+        <activity android:name=".activity.Registred" />
+        <activity android:name=".activity.category_selection" />
+        <activity android:name=".activity.mla_list" />
+        <activity android:name=".activity.Feedback" />
+        <activity android:name=".activity.minis_list" />
         <activity
-            android:name=".mps"
-            android:label="@string/title_activity_mps"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".activity.mps"
+            android:label="@string/title_activity_mps" />
         <activity
-            android:name=".KnowYourStatus"
+            android:name=".activity.KnowYourStatus"
             android:label="@string/title_activity_know_your_status" />
-        <activity android:name=".feedbacksucc"></activity>
+        <activity android:name=".activity.feedbacksucc"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.lida.myapplication
+package com.example.lida.myapplication.activity
 
 import android.content.Context
 import android.content.Intent
@@ -11,10 +11,13 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.lida.myapplication.R
 import com.example.lida.myapplication.adapter.RecyclerTouchListener
 import com.example.lida.myapplication.adapter.mp_adapter
 import com.example.lida.myapplication.decorators.DividerItemDecoration
 import com.example.lida.myapplication.models.mp
+import com.example.lida.myapplication.xtras.Connectivity
+import com.example.lida.myapplication.xtras.Constants
 import org.json.JSONObject
 import java.util.*
 
@@ -27,8 +30,8 @@ class mps : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mps)
-
-       /* val md = getSharedPreferences("abc", Context.MODE_PRIVATE)
+        Toast.makeText(applicationContext, "name", Toast.LENGTH_LONG).show()
+        val md = getSharedPreferences("abc", Context.MODE_PRIVATE)
         val s = md.getString("type", null)
 
         if (s.equals("complaint", ignoreCase = true)) {
@@ -36,7 +39,7 @@ class mps : AppCompatActivity() {
         }
         if (s.equals("feedback", ignoreCase = true)) {
             supportActionBar!!.setTitle("Feedback Or suggetion")
-        }*/
+        }
 
         val mpView = findViewById<View>(R.id.mp_recyclerview) as RecyclerView
 
@@ -53,9 +56,9 @@ class mps : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 val ml = mplist.get(position)
                 Toast.makeText(applicationContext, ml.getName() + " is selected!", Toast.LENGTH_SHORT).show()
-                val sh = getSharedPreferences("mlaid", Context.MODE_PRIVATE)
+                val sh = getSharedPreferences("ministralid", Context.MODE_PRIVATE)
                 val edsh = sh.edit()
-                edsh.putString("id", ml.getId())
+                edsh.putString("id", ml.getMinistralid())
                 edsh.putString("name", ml.getName())
                 edsh.commit()
 
@@ -86,7 +89,7 @@ class mps : AppCompatActivity() {
         override fun doInBackground(vararg strings: String): String {
 
 
-            sh = Connectivity.excutePost(Constants.MLA_URL,
+            sh = Connectivity.excutePost(Constants.mp_URL,
                     "")
             Log.e("You are at", "" + sh)
 
@@ -117,11 +120,11 @@ class mps : AppCompatActivity() {
             for (i in 0 until length) {
                 val data1 = ja.getJSONObject(i)
                 val name = data1.getString("name")
-                val mlaid = data1.getString("mlaid")
+                val ministralid = data1.getString("ministral_id")
+                val Department = data1.getString("Department")
+                val constituency = data1.getString("constituency")
 
-                val ml = com.example.lida.myapplication.models.mp(name, mlaid, "con")
-
-
+                val ml = com.example.lida.myapplication.models.mp(name, ministralid,constituency)
                 mplist.add(ml)
 
             }

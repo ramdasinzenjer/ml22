@@ -5,7 +5,7 @@ package com.example.lida.myapplication.models;
  */
 
 public class mp {
-    String name,id,constituency;
+    String name,ministralid,constituency;
 
     public String getName() {
         return name;
@@ -15,12 +15,12 @@ public class mp {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getMinistralid() {
+        return ministralid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMinistralid(String ministralid) {
+        this.ministralid = ministralid;
     }
 
     public String getConstituency() {
@@ -31,9 +31,9 @@ public class mp {
         this.constituency = constituency;
     }
 
-    public mp(String name, String id, String constituency) {
+    public mp(String name, String ministralid, String constituency) {
         this.name = name;
-        this.id = id;
+        this.ministralid = ministralid;
         this.constituency = constituency;
     }
 }

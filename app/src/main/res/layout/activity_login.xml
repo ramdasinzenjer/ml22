@@ -9,18 +9,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/keyboard"
-    tools:context="com.example.lida.myapplication.Login">
+    tools:context="com.example.lida.myapplication.activity.Login">
+
     <RelativeLayout
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <EditText
         android:textAlignment="center"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:inputType="textPersonName"
         android:hint="Username"
+        android:text="ram"
         android:ems="10"
         android:layout_marginTop="110dp"
         android:id="@+id/etu"
@@ -31,10 +39,11 @@
     <EditText
         android:textAlignment="center"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:inputType="textPassword"
         android:ems="10"
         android:hint="Password"
+        android:text="ram"
         android:id="@+id/etp"
         android:layout_below="@+id/etu"
         android:background="@drawable/roundedittxt"
@@ -47,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="52dp"
         android:id="@+id/bts" />
 
@@ -55,9 +64,13 @@
         android:text="register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
         android:layout_alignTop="@+id/bts"
         android:layout_alignEnd="@+id/etp"
         android:id="@+id/btr" />
 
     </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 </RelativeLayout>
+

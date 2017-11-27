@@ -2,13 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="70dp">
     <TextView
+        android:text="ncbmsbcmbs"
         android:id="@+id/mins_name"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
+        android:text="ncba,sdnbc,nb"
         android:id="@+id/mins_dep"
         android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/mini_constituency"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/mins_name"
+        android:text="vdsfvsdfv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

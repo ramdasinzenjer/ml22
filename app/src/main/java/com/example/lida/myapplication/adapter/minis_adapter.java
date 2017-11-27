@@ -29,7 +29,7 @@ public class minis_adapter extends RecyclerView.Adapter<minis_adapter.MyViewHold
             super(view);
             name = (TextView) view.findViewById(R.id.mins_name);
             department = (TextView) view.findViewById(R.id.mins_dep);
-            // constituency = (TextView) view.findViewById(R.id.constituency);
+            constituency = (TextView) view.findViewById(R.id.mini_constituency);
         }
     }
 
@@ -52,11 +52,12 @@ public class minis_adapter extends RecyclerView.Adapter<minis_adapter.MyViewHold
         holder.name.setText(ml.getName());
         try {
             holder.department.setText(ml.getDepartment());
+            holder.constituency.setText(ml.getConstituency());
         }
        catch (Exception e){
 
        }
-        //holder.ml_constituency.setText(ml.getConstituency());
+
     }
 
     @Override

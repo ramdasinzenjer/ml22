@@ -1,5 +1,6 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -10,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.lida.myapplication.R;
+import com.example.lida.myapplication.xtras.Connectivity;
+import com.example.lida.myapplication.xtras.Constants;
+
 import java.net.URLEncoder;
 
 public class Login extends AppCompatActivity {
@@ -18,6 +23,7 @@ public class Login extends AppCompatActivity {
     String sh;
     String uname;
     String pass;
+    ProgressDialog pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,7 @@ public class Login extends AppCompatActivity {
         etp = (EditText) findViewById(R.id.etp);
         bts = (Button) findViewById(R.id.bts);
         btr = (Button) findViewById(R.id.btr);
-
+        pg = new ProgressDialog(Login.this);
         bts.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -46,17 +52,17 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Password is empty", Toast.LENGTH_SHORT).show();
                 }
 
-                if (is_empty==0)
-                {
-                    SharedPreferences share = getSharedPreferences("abc", MODE_APPEND);
+                if (is_empty == 0) {
+                    pg.setMessage("Logging in");
+                    pg.show();
+                    SharedPreferences share = getSharedPreferences("abc", MODE_PRIVATE);
                     SharedPreferences.Editor ed = share.edit();
                     ed.putString("name", uname);
-                    ed.putString("password",pass);
+                    ed.putString("password", pass);
                     ed.commit();
                     NewClass n = new NewClass();
                     n.execute();
                 }
-
 
 
             }
@@ -97,6 +103,7 @@ public class Login extends AppCompatActivity {
             // TODO Auto-generated method stub
 
             if (sh.contains("success")) {
+                pg.dismiss();
                 Toast.makeText(getApplicationContext(), sh, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(Login.this, Comp.class);
                 startActivity(i);

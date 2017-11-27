@@ -25,9 +25,8 @@ import java.util.List;
 
             public MyViewHolder(View view) {
                 super(view);
-                name = (TextView) view.findViewById(R.id.ml_name);
-                id = (TextView) view.findViewById(R.id.ml_id);
-                // constituency = (TextView) view.findViewById(R.id.constituency);
+                name = (TextView) view.findViewById(R.id.mp_name);
+                constituency = (TextView) view.findViewById(R.id.mp_constituency);
             }
         }
 
@@ -39,7 +38,7 @@ import java.util.List;
         @Override
         public com.example.lida.myapplication.adapter.mp_adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.mla_inflator, parent, false);
+                    .inflate(R.layout.mp_inflator, parent, false);
 
             return new com.example.lida.myapplication.adapter.mp_adapter.MyViewHolder(itemView);
         }
@@ -48,8 +47,7 @@ import java.util.List;
         public void onBindViewHolder(com.example.lida.myapplication.adapter.mp_adapter.MyViewHolder holder, int position) {
             mp ml = mplist.get(position);
             holder.name.setText(ml.getName());
-            holder.id.setText(ml.getId());
-            //holder.ml_constituency.setText(ml.getConstituency());
+            holder.constituency.setText(ml.getConstituency());
         }
 
         @Override

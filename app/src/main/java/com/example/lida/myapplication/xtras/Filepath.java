@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.xtras;
 
 import android.content.Context;
 import android.content.ContentUris;

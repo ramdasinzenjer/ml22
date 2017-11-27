@@ -1,4 +1,4 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.xtras;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -14,7 +14,7 @@ import android.util.Log;
 public class Connectivity {
 
 	public static boolean getInternetConnectionStatus(Context context) {
-		// get com.example.lida.myapplication.Connectivity Manager object to check connection
+		// get com.example.lida.myapplication.xtras.Connectivity Manager object to check connection
 		ConnectivityManager connec = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 

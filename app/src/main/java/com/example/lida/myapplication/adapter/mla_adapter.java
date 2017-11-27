@@ -12,7 +12,7 @@ import com.example.lida.myapplication.models.mla;
 import java.util.List;
 
 /**
- * Created by SUDHEESH on 11/8/2017.
+ * Created by Ram on 11/8/2017.
  */
 
 public class mla_adapter extends RecyclerView.Adapter<mla_adapter.MyViewHolder> {
@@ -26,7 +26,7 @@ public class mla_adapter extends RecyclerView.Adapter<mla_adapter.MyViewHolder> 
             super(view);
             name = (TextView) view.findViewById(R.id.ml_name);
             id = (TextView) view.findViewById(R.id.ml_id);
-            // constituency = (TextView) view.findViewById(R.id.constituency);
+            constituency = (TextView) view.findViewById(R.id.ml_constituency);
         }
     }
 
@@ -47,8 +47,8 @@ public class mla_adapter extends RecyclerView.Adapter<mla_adapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         mla ml = mla_list.get(position);
         holder.name.setText(ml.getName());
-        holder.id.setText(ml.getId());
-        //holder.ml_constituency.setText(ml.getConstituency());
+        //holder.id.setText(ml.getId());
+        holder.constituency.setText(ml.getConstituency());
     }
 
     @Override

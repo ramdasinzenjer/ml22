@@ -1,13 +1,14 @@
-package com.example.lida.myapplication;
+package com.example.lida.myapplication.activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
+
+import com.example.lida.myapplication.R;
 
 public class category_selection extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,10 @@ public class category_selection extends AppCompatActivity {
 
     public void mlas(View v) {
         Intent i = new Intent(category_selection.this, mla_list.class);
+        startActivity(i);
+    }
+    public void cmo(View v){
+        Intent i=new Intent(category_selection.this,mla_list.class);
         startActivity(i);
     }
 }

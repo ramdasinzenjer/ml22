@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lida.myapplication.Feedback">
+    tools:context="com.example.lida.myapplication.activity.Feedback">
 <TextView
     android:textSize="20dp"
     android:typeface="monospace"
