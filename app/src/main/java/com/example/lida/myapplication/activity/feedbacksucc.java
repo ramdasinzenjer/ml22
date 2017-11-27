@@ -16,6 +16,14 @@ public class feedbacksucc extends AppCompatActivity {
         getSupportActionBar().hide();
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.lltt);
         ll.setAlpha((float) 0.4);
+
+
+    }
+    @Override
+    public  void onBackPressed()
+    {
+        Intent i = new Intent(feedbacksucc.this,Comp.class);
+        startActivity(i);
     }
 
     @Override
